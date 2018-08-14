@@ -1,2 +1,2 @@
-# react-redux-boilerplate
-FinBook React Redux App Boilerplate
+# react-redux-boilerplates
+FinBook React Redux App Boilerplates
