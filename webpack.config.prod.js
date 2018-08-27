@@ -12,7 +12,8 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: '[name].[chunkhash].js'
+		filename: '[name].[chunkhash].js',
+		publicPath: '/'
 	},
 	plugins: [
 		new webpack.DefinePlugin({
