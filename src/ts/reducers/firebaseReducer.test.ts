@@ -1,4 +1,4 @@
-import * as CST from '../common/constants';
+import * as CST from 'ts/common/constants';
 import { firebaseReducer, initialState } from './firebaseReducer';
 
 describe('firebase reducer', () => {

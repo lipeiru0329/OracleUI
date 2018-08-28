@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import styled from 'styled-components';
-import { ColorStyles } from '../common/styles';
+import { ColorStyles } from 'ts/common/styles';
 
 const { Header, Content } = Layout;
 

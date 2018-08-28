@@ -1,6 +1,6 @@
 import { Button, Card, Radio, Select } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
-import { ColorStyles } from '../../common/styles';
+import { ColorStyles } from 'ts/common/styles';
 
 const RadioGroup = Radio.Group;
 

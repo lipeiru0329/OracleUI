@@ -1,4 +1,4 @@
-import * as firebaseActions from '../actions/firebaseActions';
+import * as firebaseActions from 'ts/actions/firebaseActions';
 import store from './store';
 
 describe('store', () => {

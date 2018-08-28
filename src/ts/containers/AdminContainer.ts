@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { IState } from '../common/types';
-import Admin from '../components/Admin';
+import { IState } from 'ts/common/types';
+import Admin from 'ts/components/Admin';
 
 function mapStateToProps(state: IState) {
 	return {

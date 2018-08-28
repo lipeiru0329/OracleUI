@@ -1,10 +1,10 @@
+import 'css/style.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'whatwg-fetch';
-import '../css/style.css';
 import * as firebaseActions from './actions/firebaseActions';
 import Admin from './containers/AdminContainer';
 import store from './store/store';

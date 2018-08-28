@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import * as CST from '../common/constants';
-import { IFirebaseState } from '../common/types';
+import * as CST from 'ts/common/constants';
+import { IFirebaseState } from 'ts/common/types';
 
 export const initialState = {
 	[CST.AC_AUTH]: false

@@ -1,4 +1,4 @@
-import * as CST from '../common/constants';
+import * as CST from 'ts/common/constants';
 
 export function authUpdate(signedIn: boolean) {
 	return {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as CST from '../../common/constants';
-import firebaseUtil from '../../common/firebaseUtil';
+import * as CST from 'ts/common/constants';
+import firebaseUtil from 'ts/common/firebaseUtil';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardList, SCardTitle, SInput } from './_styled';
 
