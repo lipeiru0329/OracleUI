@@ -22,6 +22,9 @@
     "globals": {
       "__DEV__": false
     },
+    "setupFiles": [
+      "<rootDir>/test-setup.js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|svg|png|jpg)$": "identity-obj-proxy"
     },
