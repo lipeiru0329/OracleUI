@@ -4,6 +4,7 @@ import 'firebase/auth';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import 'whatwg-fetch';
 import * as firebaseActions from './actions/firebaseActions';
 import Admin from './containers/AdminContainer';
@@ -34,9 +35,11 @@ promise.then(() => {
 
 	ReactDOM.render(
 		<Provider store={store}>
-			<React.StrictMode>
-				<Admin />
-			</React.StrictMode>
+			<Router>
+				<React.StrictMode>
+					<Admin />
+				</React.StrictMode>
+			</Router>
 		</Provider>,
 		document.getElementById('app')
 	);

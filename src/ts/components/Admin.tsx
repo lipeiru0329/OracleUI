@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import * as React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { SContent } from './_styled';
 import AuthCard from './Cards/AuthCard';
 
@@ -18,7 +19,9 @@ export default class Admin extends React.PureComponent<IAdminProps> {
 				{signedIn ? (
 					<Layout>
 						<SContent>
-							<div>Signed In</div>
+							<Switch>
+								<Route render={() => <div>Signed In</div>} />
+							</Switch>
 						</SContent>
 					</Layout>
 				) : (
