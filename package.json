@@ -10,7 +10,8 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "prebuild": "rimraf dist",
-    "build": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer",
+    "analyze": "webpack-bundle-analyzer dist/stats.json",
+    "build": "webpack --config webpack.config.prod.js --json > webpack.json",
     "deploy:no:build": "firebase deploy --only hosting",
     "deploy:no:use": "npm run build && npm run deploy:no:build",
     "useDev": "firebase use dev",
@@ -86,7 +87,7 @@
     "tslint-react": "^3.6.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.20.2",
-    "webpack-bundle-size-analyzer": "^2.7.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
   },

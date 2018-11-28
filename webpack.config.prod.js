@@ -38,6 +38,21 @@ module.exports = {
 					name: 'd3',
 					priority: 100
 				},
+				ethers: {
+					test: /[\\/]node_modules[\\/]ethers/,
+					name: 'ethers',
+					priority: 100
+				},
+				bn: {
+					test: /[\\/]node_modules[\\/]bn/,
+					name: 'bn',
+					priority: 100
+				},
+				immutable: {
+					test: /[\\/]node_modules[\\/]immutable/,
+					name: 'immutable',
+					priority: 100
+				},
 				moment: {
 					test: /[\\/]node_modules[\\/]moment/,
 					name: 'moment',
