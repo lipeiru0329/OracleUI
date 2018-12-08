@@ -1,46 +1,36 @@
 import 'css/style.css';
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'whatwg-fetch';
-import * as firebaseActions from './actions/firebaseActions';
+import * as web3Actions from './actions/web3Actions';
 import Admin from './containers/AdminContainer';
 import store from './store/store';
+import Web3Util from './common/web3Util';
+import wsUtil from './common/wsUtil';
 
-let promise;
-if (__DEV__) {
-	// Initialize Firebase
-	firebase.initializeApp({
-		apiKey: '',
-		authDomain: '',
-		databaseURL: '',
-		projectId: '',
-		storageBucket: '',
-		messagingSenderId: ''
-	});
-	promise = new Promise(resolve => resolve());
-} else
-	promise = fetch('/__/firebase/init.json', { cache: 'no-store' })
-		.then(response => response.json())
-		.then(config => firebase.initializeApp(config));
-
-promise.then(() => {
-	firebase.auth().onAuthStateChanged(user => {
-		if (user) store.dispatch(firebaseActions.authUpdate(true));
-		else store.dispatch(firebaseActions.authUpdate(false));
-	});
-
-	ReactDOM.render(
-		<Provider store={store}>
-			<Router>
-				<React.StrictMode>
-					<Admin />
-				</React.StrictMode>
-			</Router>
-		</Provider>,
-		document.getElementById('app')
-	);
+const web3Util = new Web3Util(window, !__KOVAN__, '', false);
+web3Util.onWeb3AccountUpdate((addr: string, network: number) => {
+	if (
+		addr.toLowerCase() !== store.getState().web3.account.toLowerCase() ||
+		network !== store.getState().web3.network
+	) {
+		store.dispatch(web3Actions.accountUpdate(addr));
+		store.dispatch(web3Actions.networkUpdate(network));
+	}
 });
+
+wsUtil.connectToRelayer();
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Router>
+			<React.StrictMode>
+				<Admin />
+			</React.StrictMode>
+		</Router>
+	</Provider>,
+	document.getElementById('app')
+);

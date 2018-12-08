@@ -1,8 +1,6 @@
-import { Layout } from 'antd';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { SContent } from './_styled';
-import AuthCard from './Cards/AuthCard';
+import Oracle from '../containers/OracleContainer';
 
 export interface IAdminProps {
 	signedIn: boolean;
@@ -14,24 +12,11 @@ export default class Admin extends React.PureComponent<IAdminProps> {
 	}
 	public render() {
 		const { signedIn } = this.props;
+		console.log(signedIn);
 		return (
-			<Layout>
-				{signedIn ? (
-					<Layout>
-						<SContent>
-							<Switch>
-								<Route render={() => <div>Signed In</div>} />
-							</Switch>
-						</SContent>
-					</Layout>
-				) : (
-					<Layout>
-						<SContent>
-							<AuthCard />
-						</SContent>
-					</Layout>
-				)}
-			</Layout>
+			<Switch>
+				<Route render={() => <Oracle />} />
+			</Switch>
 		);
 	}
 }

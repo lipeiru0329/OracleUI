@@ -46,12 +46,14 @@ injectGlobal([
 			pointer-events: none !important;
 			opacity: 0.5;
 		}
+		.ant-card-head-title {
+			color: black
+		}
 	}
 `
 ] as any);
 
 export const SCardTitle = styled.div`
-	color: ${ColorStyles.TextWhiteAlpha};
 	font-family: 'Roboto', 'Microsoft YaHei';
 	font-weight: 500;
 	letter-spacing: 2px;
@@ -348,13 +350,13 @@ export const SCardExtendExtraDiv = styled.div`
 		padding: 0 10px;
 		border: 1px dashed;
 		border-color: ${(props: ICardExtraProps) =>
-			props.color ? ColorStyles.TextRedAlphaLL : ColorStyles.BorderWhite3};
+		props.color ? ColorStyles.TextRedAlphaLL : ColorStyles.BorderWhite3};
 		display: flex;
 		flex-direction: row;
 		.tag-content {
 			text-decoration: none;
 			color: ${(props: ICardExtraProps) =>
-				props.color ? props.color : ColorStyles.TextWhiteAlphaL};
+		props.color ? props.color : ColorStyles.TextWhiteAlphaL};
 			overflow: hidden;
 			display: flex;
 			flex-direction: row-reverse;
@@ -415,9 +417,39 @@ export const SRadioGroup = styled(RadioGroup as any)`
 
 export interface ICardListProps {
 	noMargin?: boolean;
+	fixWidth?: boolean;
+	width?: string;
+	noUlBorder?: boolean;
+	noLiBorder?: boolean;
 }
+
+
+export interface ISButtonProps {
+	width?: string;
+}
+
+export const SButton = styled.button`
+	cursor: pointer;
+	outline: none;
+	height: 30px;
+	width: ${(props: ISButtonProps) => (props.width ? props.width : '100%')};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid ${ColorStyles.MainColor};
+	border-radius: 2px;
+	color: ${ColorStyles.MainColor};
+	font-size: 14px;
+	transition: all 0.2s;
+	&:hover {
+		background: ${ColorStyles.MainColor};
+		color: ${ColorStyles.TextWhite};
+		box-shadow: 0 0 4px 1px ${ColorStyles.MainColorShadow};
+	}
+`;
+
 export const SCardList = styled.div`
-	width: 100%;
+	width: ${(props: ICardListProps) => (props.width ? props.width : '100%')};
 	.status-list-wrapper {
 		width: 100%;
 	}
@@ -430,7 +462,6 @@ export const SCardList = styled.div`
 		margin: 10px 0;
 		padding: 10px 5px;
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite1};
 		li:nth-child(even) {
 			background-color: ${ColorStyles.ListHighlight};
 		}
@@ -448,7 +479,6 @@ export const SCardList = styled.div`
 		}
 		.block-title {
 			font-weight: 600;
-			color: ${ColorStyles.TextWhiteAlphaL};
 			margin-bottom: 5px;
 			.last-reset-title {
 				width: 100%;
@@ -457,7 +487,6 @@ export const SCardList = styled.div`
 				align-items: center;
 				justify-content: space-between;
 				.last-reset-title-span {
-					color: ${ColorStyles.TextWhiteAlphaLL};
 					font-size: 10px;
 				}
 			}
@@ -468,10 +497,10 @@ export const SCardList = styled.div`
 			justify-content: space-between;
 			padding: 0 5px;
 			.title {
-				color: ${ColorStyles.TextWhiteAlphaL};
+				color: ${ColorStyles.TextBlackAlphaL};
 			}
 			.content {
-				color: ${ColorStyles.TextWhiteAlpha};
+				color: ${ColorStyles.TextBlackAlpha};
 			}
 			.percent-button {
 				outline: none;
@@ -575,7 +604,7 @@ export const SCardListProgressBar = styled.div`
 		.inner-bar {
 			position: relative;
 			width: ${(props: ICardListProgressBarProps) =>
-				(273 * props.index) / props.total + 6 + 'px'};
+		(273 * props.index) / props.total + 6 + 'px'};
 			height: 6px;
 			background: ${ColorStyles.TextWhiteAlphaLL};
 			box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
