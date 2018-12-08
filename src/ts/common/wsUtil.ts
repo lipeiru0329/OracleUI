@@ -42,7 +42,7 @@ class WsUtil {
 				this.connectToRelayer();
 				this.reconnectionNumber++;
 			}, 5000);
-		} else if (this.reconnectionNumber === 1000) alert("Please refresh brower");
+		} else if (this.reconnectionNumber === 1000) alert('Please refresh brower');
 	}
 
 	public async connectToRelayer() {
@@ -51,7 +51,7 @@ class WsUtil {
 		this.ws.onopen = () => {
 			console.log('reconnect');
 			const msg: any = {
-				op: "setAccount",
+				op: 'setAccount',
 				data: {
 					accountId: account
 				}
@@ -116,7 +116,7 @@ class WsUtil {
 		console.log(res);
 		// if (res.method !== CST.WS_UNSUB)
 		switch (res.op) {
-			case "update":
+			case 'update':
 				this.handleResponse((res as any).relayersInfo);
 		}
 		// 			break;
@@ -132,8 +132,6 @@ class WsUtil {
 		// 			break;
 		// 	}
 	}
-
-
 
 	// public subscribeOrderBook(pair: string) {
 	// 	if (!this.ws) return;
@@ -183,18 +181,17 @@ class WsUtil {
 	// 	this.ws.send(JSON.stringify(msg));
 	// }
 
-	public async addStack(
-		time: number,
-		name: string,
-		amt: number,
-		hash: string
-	) {
+	public async addStack(time: number, name: string, amt: number, hash: string, account: string) {
 		if (!this.ws) return;
 		const msg: IWsAddBidRequest = {
-			time: time,
-			name: name,
-			amt: amt,
-			hash: hash
+			op: 'stake',
+			data: {
+				timestamp: time,
+				relayerID: name,
+				stakeAmt: amt,
+				sign: hash,
+				accountAddress: account
+			}
 		};
 		this.ws.send(JSON.stringify(msg));
 	}

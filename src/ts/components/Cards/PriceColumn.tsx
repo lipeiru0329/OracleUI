@@ -58,7 +58,7 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 		web3Util.web3PersonalSign(
 			this.props.account, 
 			this.prepareSign(this.formatNumber(temp))
-		).then(result => wsUtil.addStack(time, this.props.name, amt, result));
+		).then(result => wsUtil.addStack(time, this.props.name, amt, result, this.props.account));
 	}
 
 	public render() {

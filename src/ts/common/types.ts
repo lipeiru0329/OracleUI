@@ -19,10 +19,14 @@ export interface IWeb3State {
 }
 
 export interface IWsAddBidRequest {
-	readonly time: number;
-	readonly name: string;
-	readonly amt: number;
-	readonly hash: string;
+	readonly op: string;
+	readonly data: {
+		readonly timestamp: number;
+		readonly relayerID: string;
+		readonly stakeAmt: number;
+		readonly sign: string;
+		readonly accountAddress: string;
+	};
 }
 
 export interface IWsResponse {
