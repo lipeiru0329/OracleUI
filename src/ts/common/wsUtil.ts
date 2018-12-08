@@ -30,10 +30,8 @@ class WsUtil {
 
 	private reconnect() {
 		this.ws = null;
-		this.handleReconnect();
 		setTimeout(() => {
 			this.connectToRelayer();
-			this.reconnectionNumber++;
 		}, 5000);
 	}
 
