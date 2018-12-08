@@ -27,7 +27,7 @@ wsUtil.connectToRelayer();
 
 wsUtil.onConnection(
 	res => store.dispatch(wsAction.updateResponse(res)),
-	() => store.dispatch(wsAction.connectionUpdate(false))
+	// () => store.dispatch(wsAction.connectionUpdate(false))
 );
 
 ReactDOM.render(

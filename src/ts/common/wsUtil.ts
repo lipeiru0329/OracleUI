@@ -9,7 +9,7 @@ const web3Util = new Web3Util(window, !__KOVAN__, '', false);
 class WsUtil {
 	public ws: WebSocket | null = null;
 	private handleConnected: () => any = () => ({});
-	private handleReconnect: () => any = () => ({});
+	// private handleReconnect: () => any = () => ({});
 	// private handleInfoUpdate: (
 	// 	tokens: IToken[],
 	// 	status: IStatus[],
@@ -28,11 +28,21 @@ class WsUtil {
 	public reconnectionNumber: number = 0;
 	public latestVersionNumber: number = 0;
 
+	public sleep(ms: number) {
+		return new Promise(resolve => {
+			setTimeout(resolve, ms);
+		});
+	}
+
 	private reconnect() {
 		this.ws = null;
-		setTimeout(() => {
-			this.connectToRelayer();
-		}, 5000);
+		if (this.reconnectionNumber < 100) {
+			this.sleep(5000);
+			setTimeout(() => {
+				this.connectToRelayer();
+				this.reconnectionNumber++;
+			}, 5000);
+		} else alert("Please refresh brower");
 	}
 
 	public async connectToRelayer() {
@@ -105,10 +115,10 @@ class WsUtil {
 		console.log('res');
 		console.log(res);
 		// if (res.method !== CST.WS_UNSUB)
-			switch (res.op) {
-				case "update":
-					this.handleResponse((res as any).relayersInfo);
-			}
+		switch (res.op) {
+			case "update":
+				this.handleResponse((res as any).relayersInfo);
+		}
 		// 			break;
 		// 		case CST.DB_ORDER_BOOKS:
 		// 			this.handleOrderBookResponse(res);
@@ -223,9 +233,9 @@ class WsUtil {
 	// 	this.handleOrderBookError = handleError;
 	// }
 
-	public onConnection(handleResponse: (res: IWsResponse) => any, handleReconnect: () => any) {
+	public onConnection(handleResponse: (res: IWsResponse) => any) {
 		this.handleResponse = handleResponse;
-		this.handleReconnect = handleReconnect;
+		// this.handleReconnect = handleReconnect;
 	}
 
 	// public onInfoUpdate(
