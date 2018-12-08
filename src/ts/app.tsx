@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'whatwg-fetch';
 import * as web3Actions from './actions/web3Actions';
+import * as wsAction from './actions/wsActions';
 import Admin from './containers/AdminContainer';
 import store from './store/store';
 import Web3Util from './common/web3Util';
@@ -23,6 +24,11 @@ web3Util.onWeb3AccountUpdate((addr: string, network: number) => {
 });
 
 wsUtil.connectToRelayer();
+
+wsUtil.onConnection(
+	res => store.dispatch(wsAction.updateResponse(res)),
+	() => store.dispatch(wsAction.connectionUpdate(false))
+);
 
 ReactDOM.render(
 	<Provider store={store}>

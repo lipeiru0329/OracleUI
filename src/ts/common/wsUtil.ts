@@ -1,7 +1,10 @@
 import WebSocket from 'isomorphic-ws';
 // import orderUtil from '../../../../israfel-relayer/src/utils/orderUtil';
 // import * as CST from './constants';
-import { IWsAddBidRequest } from './types';
+import { IWsAddBidRequest, IWsResponse, IWsTemp } from './types';
+import Web3Util from './web3Util';
+
+const web3Util = new Web3Util(window, !__KOVAN__, '', false);
 
 class WsUtil {
 	public ws: WebSocket | null = null;
@@ -21,30 +24,32 @@ class WsUtil {
 	// ) => any = () => ({});
 	// // private handleOrderBookSnapshot: (orderBookSnapshot: IOrderBookSnapshot) => any = () => ({});
 	// // private handleOrderBookUpdate: (orderBookUpdate: IOrderBookSnapshotUpdate) => any = () => ({});
-	// private handleOrderBookError: (method: string, pair: string, error: string) => any = () => ({});
+	private handleResponse: (res: IWsResponse) => any = () => ({});
 	public reconnectionNumber: number = 0;
 	public latestVersionNumber: number = 0;
 
 	private reconnect() {
 		this.ws = null;
-		if (this.reconnectionNumber < 6) {
-			this.handleReconnect();
-			setTimeout(() => {
-				this.connectToRelayer();
-				this.reconnectionNumber++;
-			}, 5000);
-		} else alert('We have tried 6 times. Please try again later');
+		this.handleReconnect();
+		setTimeout(() => {
+			this.connectToRelayer();
+			this.reconnectionNumber++;
+		}, 5000);
 	}
 
-	public close() {
-		this.ws = new WebSocket(`ws://localhost:3000`);
-		this.ws.onclose = () => this.reconnect();
-	}
-
-	public connectToRelayer() {
+	public async connectToRelayer() {
+		const account = await web3Util.getCurrentAddress();
 		this.ws = new WebSocket(`ws://localhost:3000`);
 		this.ws.onopen = () => {
 			console.log('reconnect');
+			const msg: any = {
+				op: "setAccount",
+				data: {
+					accountId: account
+				}
+			};
+			console.log(msg);
+			this.ws.send(JSON.stringify(msg));
 			this.reconnectionNumber = 0;
 			this.handleConnected();
 		};
@@ -98,13 +103,14 @@ class WsUtil {
 
 	public handleMessage(message: string) {
 		console.log(message);
-		// const res: IWsResponse = JSON.parse(message);
-		// console.log('res');
-		// console.log(res);
+		const res: IWsTemp = JSON.parse(message);
+		console.log('res');
+		console.log(res);
 		// if (res.method !== CST.WS_UNSUB)
-		// 	switch (res.channel) {
-		// 		case CST.DB_ORDERS:
-		// 			this.handleOrderResponse(res as IWsOrderResponse);
+			switch (res.op) {
+				case "update":
+					this.handleResponse((res as any).relayersInfo);
+			}
 		// 			break;
 		// 		case CST.DB_ORDER_BOOKS:
 		// 			this.handleOrderBookResponse(res);
@@ -184,7 +190,7 @@ class WsUtil {
 		};
 		this.ws.send(JSON.stringify(msg));
 	}
-	
+
 	// public deleteOrder(pair: string, orderHash: string, signature: string) {
 	// 	if (!this.ws) return;
 
@@ -219,10 +225,10 @@ class WsUtil {
 	// 	this.handleOrderBookError = handleError;
 	// }
 
-	// public onConnection(handleConnected: () => any, handleReconnect: () => any) {
-	// 	this.handleConnected = handleConnected;
-	// 	this.handleReconnect = handleReconnect;
-	// }
+	public onConnection(handleResponse: (res: IWsResponse) => any, handleReconnect: () => any) {
+		this.handleResponse = handleResponse;
+		this.handleReconnect = handleReconnect;
+	}
 
 	// public onInfoUpdate(
 	// 	handleInfoUpdate: (

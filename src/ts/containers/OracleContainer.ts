@@ -5,8 +5,9 @@ import { IState } from 'ts/common/types';
 
 function mapStateToProps(state: IState) {
 	return {
-		account: state.web3.account
-	};
+		account: state.web3.account,
+		res: state.ws.res
+	}
 }
 
 export default connect(mapStateToProps, {})(Oracle);

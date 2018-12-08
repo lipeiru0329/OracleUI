@@ -16,3 +16,5 @@ export const NETWORK_ID_KOVAN = 42;
 export const PROVIDER_LOCAL = 'http://localhost:8545';
 export const AC_ACCOUNT = "account";
 export const AC_NETWORK = "network";
+export const AC_RESPONSE = "response";
+export const AC_CONNECTION = "connection";

@@ -64,7 +64,7 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 		const { name, price, stack, yourStack } = this.props;
 		return (
 			<SCard
-				title={<SCardTitle>{"test"}</SCardTitle>}
+				title={<SCardTitle>{name}</SCardTitle>}
 				width="595px"
 				margin={"5px"}
 			>
