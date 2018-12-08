@@ -13,6 +13,7 @@ interface IProps {
 	stack: number;
 	yourStack: number;
 	account: string;
+	className: string;
 }
 interface IState {
 	amount: number;
@@ -61,12 +62,13 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { name, price, stack, yourStack } = this.props;
+		const { name, price, stack, yourStack, className } = this.props;
 		return (
 			<SCard
 				title={<SCardTitle>{name}</SCardTitle>}
 				width="595px"
 				margin={"5px"}
+				className={className}
 			>
 				<SDivFlexCenter horizontal>
 					<SCardList noMargin width="66%">

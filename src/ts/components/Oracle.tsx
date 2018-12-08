@@ -24,21 +24,23 @@ export default class Admin extends React.PureComponent<IProps> {
 			<Layout>
 				<Header />
 				{Object.keys(this.props.res).length > 0 ? [
-					// <SDivFlexCenter center horizontal marginBottom="10px;">
-					// 	<PriceColumn name={res[Object.keys(res)[0] as any].relayerID} price={res[Object.keys(res)[0] as any].price} stack={2} yourStack={3} account={account} />
-					// 	<PriceColumn name={res[Object.keys(res)[1] as any].relayerID} price={res[Object.keys(res)[1] as any].price} stack={3} yourStack={2} account={account} />
-					// 	<PriceColumn name={res[Object.keys(res)[2] as any].relayerID} price={res[Object.keys(res)[2] as any].price} stack={2} yourStack={3} account={account} />
-					// </SDivFlexCenter>,
+					<div style={{ margin: "10px" }}>
+						<SDivFlexCenter center horizontal marginBottom="10px;">
+							<PriceColumn className={"left top"} name={res[Object.keys(res)[0] as any].relayerID} price={res[Object.keys(res)[0] as any].price} stack={2} yourStack={3} account={account} />
+							<PriceColumn className={"middle top"} name={res[Object.keys(res)[1] as any].relayerID} price={res[Object.keys(res)[1] as any].price} stack={3} yourStack={2} account={account} />
+							<PriceColumn className={"right top"} name={res[Object.keys(res)[2] as any].relayerID} price={res[Object.keys(res)[2] as any].price} stack={2} yourStack={3} account={account} />
+						</SDivFlexCenter>,
 					<SDivFlexCenter center horizontal marginBottom="10px;">
-						<PriceColumn name={"replayer 1"} price={1} stack={2} yourStack={3} account={account} />
-						<PriceColumn name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
-						<PriceColumn name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
-					</SDivFlexCenter>,
+							<PriceColumn className={"left"} name={"replayer 1"} price={1} stack={2} yourStack={3} account={account} />
+							<PriceColumn className={"middle"} name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
+							<PriceColumn className={"right"} name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
+						</SDivFlexCenter>,
 					<SDivFlexCenter center horizontal marginBottom="10px;">
-						<PriceColumn name={"replayer 1"} price={1} stack={2} yourStack={3} account={account} />
-						<PriceColumn name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
-						<PriceColumn name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
-					</SDivFlexCenter>
+							<PriceColumn className={"left down"} name={"replayer 1"} price={1} stack={2} yourStack={3} account={account} />
+							<PriceColumn className={"middle down"} name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
+							<PriceColumn className={"right down"} name={"relayer 2"} price={2} stack={3} yourStack={2} account={account} />
+						</SDivFlexCenter>
+					</div>
 				] : (<Spin style={{
 					position: "relative",
 					top: "150px"

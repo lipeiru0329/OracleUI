@@ -42,7 +42,7 @@ class WsUtil {
 				this.connectToRelayer();
 				this.reconnectionNumber++;
 			}, 5000);
-		} else alert("Please refresh brower");
+		} else if (this.reconnectionNumber === 1000) alert("Please refresh brower");
 	}
 
 	public async connectToRelayer() {
