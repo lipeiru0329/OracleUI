@@ -217,6 +217,11 @@ injectGlobal([
 		 -webkit-animation-name: fadeInDown;
 		 animation-name: fadeInDown;
 		 }
+		.status-list-wrapper:hover {
+			box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+   	 		-webkit-transform: scale(1.1);
+    		transform: scale(1.05) translateY(-5px);
+		}
 	}
 `
 ] as any);
