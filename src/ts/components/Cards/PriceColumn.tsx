@@ -56,13 +56,14 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 		console.log(this.props.account);
 		console.log(this.prepareSign(temp.toString()));
 		web3Util.web3PersonalSign(
-			this.props.account, 
+			this.props.account,
 			this.prepareSign(this.formatNumber(temp))
 		).then(result => wsUtil.addStack(time, this.props.name, amt, result, this.props.account));
 	}
 
 	public render() {
 		const { name, price, stack, yourStack, className } = this.props;
+		console.log(yourStack);
 		return (
 			<SCard
 				title={<SCardTitle>{name}</SCardTitle>}
@@ -86,10 +87,10 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 									<span className="title">Stack</span>
 									<span className="content">{stack}</span>
 								</li>
-								<li>
+								{/* <li>
 									<span className="title">Your Stack</span>
 									<span className="content">{yourStack}</span>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 					</SCardList>
@@ -108,65 +109,9 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 							value={this.state.amount}
 							onChange={e => this.handleAmountChange(e.target.value)}
 						/>
-						<SButton onClick={() => this.signBid(this.state.amount)}>Stack</SButton>
+						<SButton onClick={() => this.signBid(this.state.amount)}>Stake</SButton>
 					</div>
 				</SDivFlexCenter>
-				{/* <SDivFlexCenter horizontal height="130px" padding="10px 0">
-					<div style={{ width: '66%', border: '1px solid rgba(237,241,242,1)' }}>
-						<img src={temp} style={{ width: '100%', height: '100%' }} />
-					</div>
-					<div
-						style={{
-							width: '34%',
-							padding: '0px 10px',
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'space-between'
-						}}
-					>
-						<SCardList noMargin width="100%">
-							<div className="status-list-wrapper">
-								<ul>
-									<li>
-										<span className="title">aETH</span>
-									</li>
-									<li style={{ flexDirection: 'row-reverse' }}>
-										<span className="content">1,234,567</span>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
-						<SButton onClick={toggleTradeDisplay}>TRADE aETH</SButton>
-					</div>
-				</SDivFlexCenter>
-				<SDivFlexCenter horizontal height="130px" padding="10px 0">
-					<div style={{ width: '66%', border: '1px solid rgba(237,241,242,1)' }}>
-						<img src={temp} style={{ width: '100%', height: '100%' }} />
-					</div>
-					<div
-						style={{
-							width: '34%',
-							padding: '0px 10px',
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'space-between'
-						}}
-					>
-						<SCardList noMargin width="100%">
-							<div className="status-list-wrapper">
-								<ul>
-									<li>
-										<span className="title">bETH</span>
-									</li>
-									<li style={{ flexDirection: 'row-reverse' }}>
-										<span className="content">1,234,567</span>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
-						<SButton onClick={toggleTradeDisplay}>TRADE bETH</SButton>
-					</div>
-				</SDivFlexCenter> */}
 			</SCard>
 		);
 	}
