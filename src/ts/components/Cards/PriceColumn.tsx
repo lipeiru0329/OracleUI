@@ -63,7 +63,7 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 
 	public render() {
 		const { name, price, stack, yourStack, className } = this.props;
-		console.log(yourStack);
+		console.log(stack);
 		return (
 			<SCard
 				title={<SCardTitle>{name}</SCardTitle>}
@@ -83,14 +83,14 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 									<span className="title">Price</span>
 									<span className="content">{price}</span>
 								</li>
-								<li>
+								{/* <li>
 									<span className="title">Your Stake</span>
 									<span className="content">{stack}</span>
-								</li>
-								{/* <li>
-									<span className="title">Your Stack</span>
-									<span className="content">{yourStack}</span>
 								</li> */}
+								<li>
+									<span className="title">Your Stake</span>
+									<span className="content">{yourStack}</span>
+								</li>
 							</ul>
 						</div>
 					</SCardList>

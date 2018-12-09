@@ -24,24 +24,24 @@ export default class Admin extends React.PureComponent<IProps> {
 		console.log('resdfge');
 		return <Layout>
 			<Header />
-			{res !== undefined && Object.keys(this.props.res).length > 0 ? [<div style={{ margin: '10px' }}>
+			{res !== undefined && Object.keys(this.props.res).length > 0 ? (<div style={{ margin: '10px' }}>
 				<SDivFlexCenter center horizontal marginBottom="10px;">
-					<PriceColumn className={'left top'} name={res[Object.keys(res)[0] as any].relayerID} price={Number(Number(res[Object.keys(res)[0] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[0] as any].stakedAmt} account={account} />
-					<PriceColumn className={'middle top'} name={res[Object.keys(res)[1] as any].relayerID} price={Number(Number(res[Object.keys(res)[1] as any].price).toFixed(2))} stack={3} yourStack={res[Object.keys(res)[1] as any].stakedAmt} account={account} />
-					<PriceColumn className={'right top'} name={res[Object.keys(res)[2] as any].relayerID} price={Number(Number(res[Object.keys(res)[2] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[2] as any].stakedAmt} account={account} />
+					<PriceColumn className={'left top'} name={res[Object.keys(res)[0] as any].relayerID} price={Number(Number(res[Object.keys(res)[0] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[0] as any].accountId === this.props.account ? res[Object.keys(res)[0] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'middle top'} name={res[Object.keys(res)[1] as any].relayerID} price={Number(Number(res[Object.keys(res)[1] as any].price).toFixed(2))} stack={3} yourStack={res[Object.keys(res)[1] as any].accountId === this.props.account ? res[Object.keys(res)[1] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'right top'} name={res[Object.keys(res)[2] as any].relayerID} price={Number(Number(res[Object.keys(res)[2] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[2] as any].accountId === this.props.account ? res[Object.keys(res)[2] as any].stakedAmt : 0} account={account} />
 				</SDivFlexCenter>,
 				{this.props.res.length > 3 ?
 					<SDivFlexCenter center horizontal marginBottom="10px;">
-						<PriceColumn className={'left'} name={'replayer 1'} price={1} stack={2} yourStack={3} account={account} />
-						<PriceColumn className={'middle'} name={'relayer 2'} price={2} stack={3} yourStack={2} account={account} />
-						<PriceColumn className={'right'} name={'relayer 2'} price={2} stack={3} yourStack={2} account={account} />
+						<PriceColumn className={'left'} name={res[Object.keys(res)[3] as any].relayerID} price={Number(Number(res[Object.keys(res)[3] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[3] as any].accountId === this.props.account ? res[Object.keys(res)[3] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'middle'} name={res[Object.keys(res)[4] as any].relayerID} price={Number(Number(res[Object.keys(res)[4] as any].price).toFixed(2))} stack={3} yourStack={res[Object.keys(res)[4] as any].accountId === this.props.account ? res[Object.keys(res)[4] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'right'} name={res[Object.keys(res)[5] as any].relayerID} price={Number(Number(res[Object.keys(res)[5] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[5] as any].accountId === this.props.account ? res[Object.keys(res)[5] as any].stakedAmt : 0} account={account} />
 					</SDivFlexCenter> : ""},
 				{this.props.res.length > 6 ? <SDivFlexCenter center horizontal marginBottom="10px;">
-					<PriceColumn className={'left down'} name={'replayer 1'} price={1} stack={2} yourStack={3} account={account} />
-					<PriceColumn className={'middle down'} name={'relayer 2'} price={2} stack={3} yourStack={2} account={account} />
-					<PriceColumn className={'right down'} name={'relayer 2'} price={2} stack={3} yourStack={2} account={account} />
+				<PriceColumn className={'left down'} name={res[Object.keys(res)[6] as any].relayerID} price={Number(Number(res[Object.keys(res)[6] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[6] as any].accountId === this.props.account ? res[Object.keys(res)[6] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'middle down'} name={res[Object.keys(res)[7] as any].relayerID} price={Number(Number(res[Object.keys(res)[7] as any].price).toFixed(2))} stack={3} yourStack={res[Object.keys(res)[7] as any].accountId === this.props.account ? res[Object.keys(res)[7] as any].stakedAmt : 0} account={account} />
+					<PriceColumn className={'right down'} name={res[Object.keys(res)[8] as any].relayerID} price={Number(Number(res[Object.keys(res)[8] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[8] as any].accountId === this.props.account ? res[Object.keys(res)[8] as any].stakedAmt : 0} account={account} />
 				</SDivFlexCenter> : ""}
-			</div>] : <Spin style={{ position: 'relative', top: '150px' }} tip="Loading....." />}
+			</div>) : <Spin style={{ position: 'relative', top: '150px' }} tip="Loading....." />}
 		</Layout>;
 	}
 }
