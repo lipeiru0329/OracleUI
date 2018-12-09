@@ -84,7 +84,7 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 									<span className="content">{price}</span>
 								</li>
 								<li>
-									<span className="title">Stack</span>
+									<span className="title">Your Stake</span>
 									<span className="content">{stack}</span>
 								</li>
 								{/* <li>
