@@ -108,7 +108,7 @@ export default class PriceColumn extends React.Component<IProps, IState> {
 							value={this.state.amount}
 							onChange={e => this.handleAmountChange(e.target.value)}
 						/>
-						<SButton onClick={() => this.signBid(this.state.amount)}>Bid</SButton>
+						<SButton onClick={() => this.signBid(this.state.amount)}>Stack</SButton>
 					</div>
 				</SDivFlexCenter>
 				{/* <SDivFlexCenter horizontal height="130px" padding="10px 0">
