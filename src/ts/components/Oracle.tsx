@@ -24,7 +24,7 @@ export default class Admin extends React.PureComponent<IProps> {
 		console.log('resdfge');
 		return <Layout>
 			<Header />
-			{res !== undefined && Object.keys(this.props.res).length > 0 ? (<div style={{ margin: '10px' }}>
+			{res !== undefined && Object.keys(this.props.res).length > 0 && res[Object.keys(res)[0] as any].accountId === this.props.account ? (<div style={{ margin: '10px' }}>
 				<SDivFlexCenter center horizontal marginBottom="10px;">
 					<PriceColumn className={'left top'} name={res[Object.keys(res)[0] as any].relayerID} price={Number(Number(res[Object.keys(res)[0] as any].price).toFixed(2))} stack={2} yourStack={res[Object.keys(res)[0] as any].accountId === this.props.account ? res[Object.keys(res)[0] as any].stakedAmt : 0} account={account} />
 					<PriceColumn className={'middle top'} name={res[Object.keys(res)[1] as any].relayerID} price={Number(Number(res[Object.keys(res)[1] as any].price).toFixed(2))} stack={3} yourStack={res[Object.keys(res)[1] as any].accountId === this.props.account ? res[Object.keys(res)[1] as any].stakedAmt : 0} account={account} />
