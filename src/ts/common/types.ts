@@ -30,9 +30,11 @@ export interface IWsAddBidRequest {
 }
 
 export interface IWsResponse {
-	readonly relayerID: string;
+	readonly accountId: string;
 	readonly price: number;
-	readonly timestamp: number;
+	readonly relayerID: string;
+	readonly stakedAmt: number;
+	readonly ts: number;
 }
 
 export interface IWsState {
