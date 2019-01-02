@@ -1,0 +1,28 @@
+version: 2
+jobs:
+    build-OracleUI:
+        working_directory: /home/circleci/OracleUI
+        docker: 
+            - image: circleci/node:8.11.1
+        steps:
+            - checkout
+            - restore_cache:
+                key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
+            - run:
+                name: Install npm wee
+                command: npm install
+            - run:
+                name: test
+                command: npm test -- -w 1
+            - run:
+                name: coverage
+                command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
+            - save_cache:
+                key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
+                paths:
+                    - /home/circleci/OracleUI
+workflows:
+    version: 2
+    build_and_test:
+        jobs:
+            - build-OracleUI
