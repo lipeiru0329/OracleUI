@@ -15,10 +15,8 @@ jobs:
                 name: test
                 command: npm test -- -w 1
             -  run : 
-                name :  post coverage 
-                command :  cat ./coverage/lcov.info | ./ node_modules / .bin / coveralls -  run : 
-                name :  run lint 
-                command :  npm run lint
+                name :  post coverage
+                command: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls 
             - save_cache:
                 key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
